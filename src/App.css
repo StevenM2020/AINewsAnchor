@@ -1,0 +1,129 @@
+/* General styles for all pages*/
+
+/* Styling for the header */
+h1 {
+  text-align: center;
+  color: #c9c9c9;
+}
+
+/* Styling for the news content */
+.news-content {
+  background: #1e1e1e;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+  color: #f0f0f0;
+  line-height: 1.6;
+  max-width: 800px;
+  text-align: left;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1rem;
+}
+
+/* Styling for images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto 20px;
+}
+
+/* Styling for buttons and links */
+button {
+  background: #0d6efd;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  width: 200px;
+  font-size: 2rem;
+}
+
+button:hover {
+  background: #0b5ed7;
+}
+
+.link-home {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  color: #0d6efd;
+  padding: 10px 0;
+}
+
+.link-home:hover {
+  text-decoration: underline;
+}
+
+/* Styling for section titles within news content */
+.news-section-title {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+/* Styles for individual news items */
+.news-item {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #333;
+}
+
+/* Styles for larger image */
+img {
+  width: 40%;
+  display: block;
+  margin: 20px auto;
+  border-radius: 25px;
+}
+
+/* Overall page styles for dark mode */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #121212;
+  color: #fff;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* Styling for labels and textareas */
+label {
+  display: block;
+  margin: 0.5rem 0;
+}
+
+textarea {
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: none;
+  background-color: #252525;
+  color: #fff;
+  font-size: 1rem;
+}
+
+textarea::placeholder {
+  color: #b1b1b1;
+}
+
+/* Error message styling */
+.error-message {
+  color: #e63946;
+  margin-top: 0.5rem;
+}
