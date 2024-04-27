@@ -128,9 +128,6 @@ textarea::placeholder {
   margin-top: 0.5rem;
 }
 
-.newsRequestBtn {
-  background: #0d6efd; 
-}
 
 .requests-container {
   display: flex;
@@ -161,4 +158,11 @@ textarea::placeholder {
 
 .main-content {
   grid-column: 2 / 3;
+}
+
+.newsRequestBtn {
+  background: #252525;
+  color: white;
+
+  font-size: .8rem;
 }
