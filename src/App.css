@@ -147,22 +147,3 @@ textarea::placeholder {
   gap: 20px;
   padding: 20px;
 }
-
-.sidebar {
-  grid-column: 1 / 2;
-  background: #252525; 
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.main-content {
-  grid-column: 2 / 3;
-}
-
-.newsRequestBtn {
-  background: #252525;
-  color: white;
-
-  font-size: .8rem;
-}
