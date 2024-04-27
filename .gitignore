@@ -25,3 +25,5 @@ dist-ssr
 *.env
 .eslintrc.cjs
 NewsAnchor.zip
+src/assets/ai-images
+NewsDatabase.db

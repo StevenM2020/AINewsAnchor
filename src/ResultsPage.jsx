@@ -13,66 +13,70 @@ function ResultsPage() {
     navigate("/");
   };
 
-  const { newsTopic, newsAnchor } = location.state || {
+  const { newsTopic, newsAnchor, newsId } = location.state || {
     newsTopic: "",
     newsAnchor: "",
+    newsId: 0,
   };
 
-  useEffect(() => {
-
-    // fetches the news articles and generates the news text
-    const getNews = async () => {
-      try {
-        await fetch("http://localhost:5000/api/news", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            topic: newsTopic,
-            anchor: newsAnchor,
-          }),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            setNews(data);
-          });
-      } catch (err) {
-        setNews("Error");
-      }
-    };
-
-    // fetches the generated image of the news anchor
-    const getGeneratedImage = async () => {
-      try {
-        const response = await fetch(
-          "http://localhost:5000/api/generate-image",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ anchor: newsAnchor }),
-          }
-        );
-
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await response.json();
-        setGeneratedImage(data.image); // Assuming you have a state hook for this
-      } catch (error) {
-        console.error("Error fetching generated image: ", error);
-      }
-    };
-
-    if (newsTopic != "" && newsAnchor != "") {
-      getGeneratedImage();
-      getNews();
-    } else {
-      setNews("Error, please enter a news topic and anchor.");
+  const getNewsAndImage = async () => {
+    try {
+      await fetch("http://localhost:5000/api/generate-newstext-image", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          topic: newsTopic,
+          anchor: newsAnchor,
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setNews(data.newsText);
+          setGeneratedImage(data.imagePath);
+        });
+    } catch (err) {
+      setNews("Error");
     }
-  }, [newsTopic, newsAnchor]);
+  };
+
+  const getNewsAndImageFromDatabase = async () => {
+    try {
+      await fetch("http://localhost:5000/api/get-news-request", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          newsID: newsId,
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setNews(data.newsText);
+          setGeneratedImage(data.imagePath);
+        });
+    } catch (err) {
+      setNews("Error getting info from database",err);
+    }
+  };
+
+
+  // fetches the news articles and generates the news text
+  useEffect(() => {
+    console.log(newsId);
+    if(newsId > 0 ){
+      getNewsAndImageFromDatabase();
+    }else{
+
+    if (newsTopic !== "" && newsAnchor !== "") {
+      getNewsAndImage();
+    } else {
+      setNews("Error");
+    }
+  }
+  }, []);
 
   // splits the news text into sections
   const newsSections = news.split("\n\n").map((section, index) => (
