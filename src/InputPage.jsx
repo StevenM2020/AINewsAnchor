@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import { useNavigate } from "react-router-dom";
+import RequestButton from './components/RequestButton';
+
 function InputPage() {
   const [error, setError] = useState("");
   const [newsAnchor, setNewsAnchor] = useState("default");
@@ -65,7 +67,19 @@ function InputPage() {
   };
 
   return (
-    <div className="input-container">
+
+    <div className="container">
+
+<div className="sidebar">
+    <h2>Recent Requests</h2>
+    {requests.map((request, index) => (
+      <RequestButton key={index} request={request} onClick={handleRequestClick} />
+    ))}
+  </div>
+
+
+  <div className="input-container">
+
       <h1>AI News Anchor</h1>
       <label htmlFor="newsTopic">News Topic:</label>
       <textarea
@@ -82,19 +96,7 @@ function InputPage() {
       <button onClick={handleSubmit}>Get News</button>
       {error && <div className="error-message">{error}</div>}
 
-      <h2>Recent Requests</h2>
-
-      {requests.map((request, index) => (
-        <button
-          key={index}
-          type="button"
-          //className="newsRequestBtn"
-          onClick={() => handleRequestClick(request.ID)}
-          style={{ backgroundColor: "#f0f0f0", margin: "5px" }}
-        >
-          {request.Topic} - {request.Anchor}
-        </button>
-      ))}
+      </div>
     </div>
   );
 }
