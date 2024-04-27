@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import logo from './assets/logo1.png';
+import logo from "./assets/logo1.png";
 import { useNavigate, useLocation } from "react-router-dom";
 function ResultsPage() {
   const [news, setNews] = useState("");
@@ -58,24 +58,22 @@ function ResultsPage() {
           setGeneratedImage(data.imagePath);
         });
     } catch (err) {
-      setNews("Error getting info from database",err);
+      setNews("Error getting info from database", err);
     }
   };
-
 
   // fetches the news articles and generates the news text
   useEffect(() => {
     console.log(newsId);
-    if(newsId > 0 ){
+    if (newsId > 0) {
       getNewsAndImageFromDatabase();
-    }else{
-
-    if (newsTopic !== "" && newsAnchor !== "") {
-      getNewsAndImage();
     } else {
-      setNews("Error");
+      if (newsTopic !== "" && newsAnchor !== "") {
+        getNewsAndImage();
+      } else {
+        setNews("Error");
+      }
     }
-  }
   }, []);
 
   // splits the news text into sections
@@ -94,7 +92,11 @@ function ResultsPage() {
   return (
     <div className="news-content">
       <h1>AI News Anchor</h1>
-        <img src={generatedImage || logo} alt="Generated News Anchor" onError={handleImageError} />
+      <img
+        src={generatedImage || logo}
+        alt="Generated News Anchor"
+        onError={handleImageError}
+      />
       {newsSections}
       <button onClick={handleSubmit}>Home</button>
     </div>

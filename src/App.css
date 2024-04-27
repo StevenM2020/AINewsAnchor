@@ -147,3 +147,18 @@ textarea::placeholder {
   gap: 20px;
   padding: 20px;
 }
+
+/* Move the side bar when phone size */
+@media (max-width: 768px) { 
+  .container {
+    grid-template-columns: 1fr; 
+    grid-template-rows: 1fr auto;
+    justify-items: center; 
+  }
+
+  .sidebar {
+    grid-column: 1; 
+    grid-row: 2; 
+    justify-self: center; 
+  }
+}
